@@ -1,30 +1,28 @@
 const express = require('express');
-const path = require('path');
-const bodyParser = require('body-parser');
 const morgan = require('morgan');
+const path = require('path');
+const routes = require('./routes/routes');
 
 const app = express();
 
-app.use(bodyParser.urlencoded({ extended : true }));
-app.use(bodyParser.json());
-const routes = require('./routes/dashRoutes');
-
-app.use('/', routes);
-
-//rutas estaticas
-app.use(express.static('public'));
-app.set('views', path.join(__dirname, 'views/'));
-
-//configuracion del servidor
+// settings (3)
 app.set('port', 3000);
+app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
-//middlewares
+// middlewares (3)
 app.use(morgan('dev'));
+app.use(express.urlencoded( { extended : false } ));
+app.use(express.json());
 
-//Inicializacion del servidor
-app.listen(app.get('port', () => {
-    console.log('Servidor funcionando...');
-}))
+// static routes (1)
+app.use('/', routes);
+
+// routes (1)
+app.use(express.static('public'));
+
+app.listen(app.get('port'), () => {
+    console.log('servidor funcionando en el puerto', app.get('port'))
+});
 
 module.exports = app;
