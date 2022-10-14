@@ -1,0 +1,17 @@
+<%- include('_partials/_header.ejs') %> 
+
+<title>Inicio</title>
+</head>
+<body>
+    <%- include('_partials/_nav.ejs') %>
+
+    <script>
+        let btn = document.querySelector("#btn");
+        let sidebar = document.querySelector(".sidebar");
+
+        btn.onclick = function() {
+            sidebar.classList.toggle("active");
+        }
+    </script>
+</body>
+</html>

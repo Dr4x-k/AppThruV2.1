@@ -1,7 +1,9 @@
 const express = require('express');
 const morgan = require('morgan');
 const path = require('path');
+require('dotenv').config({ path: path.join(__dirname, './.env') });
 const routes = require('./routes/routes');
+const connection = require('./databases/connection');
 
 const app = express();
 
@@ -16,10 +18,10 @@ app.use(express.urlencoded( { extended : false } ));
 app.use(express.json());
 
 // static routes (1)
-app.use('/', routes);
+app.use(express.static('src/public'));
 
 // routes (1)
-app.use(express.static('public'));
+app.use('/', routes);
 
 app.listen(app.get('port'), () => {
     console.log('servidor funcionando en el puerto', app.get('port'))
