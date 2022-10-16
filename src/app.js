@@ -18,14 +18,14 @@ app.use(morgan('dev'));
 app.use(express.urlencoded( { extended : false } ));
 app.use(express.json());
 
+// Cookies
+app.use(cookieParser());
+
 // static routes (1)
 app.use(express.static('src/public'));
 
 // routes (1)
 app.use('/', routes);
-
-// Cookies
-app.use(cookieParser());
 
 app.listen(app.get('port'), () => {
     console.log('servidor funcionando en el puerto', app.get('port'))

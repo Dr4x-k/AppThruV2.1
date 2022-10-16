@@ -62,11 +62,11 @@ accountController.login = async (req, res) => {
             } else { //Inicio de sesion correcto
                 const idUsuario = results[0].idUsuario
                 // Token con tiempo de expiracion
-                // const token = jwt.sign({idUsuario:idUsuario}, process.env.JWT_SECRET, {
-                //     expiresIn: process.env.JWT_EXPIRATION_TIME
-                // })
+                const token = jwt.sign({idUsuario:idUsuario}, process.env.JWT_SECRET, {
+                    expiresIn: process.env.JWT_EXPIRATION_TIME
+                })
                 // Token sin tiempo de expiracion
-                const token = jwt.sign({idUsuario:idUsuario}, process.env.JWT_SECRET);
+                // const token = jwt.sign({idUsuario:idUsuario}, process.env.JWT_SECRET); 
                 console.log(token)
                 const cookieOptions = {
                     expires: new Date(Date.now()+process.env.JWT_COOKIE_EXPIRES * 24 * 60 * 60 * 1000),
@@ -92,7 +92,7 @@ accountController.login = async (req, res) => {
 accountController.isAuthenticated = async (req, res, next) => {
     if (req.cookies.jwt) {
         try {
-            const decod = await promisify(jwt.verify)(req.cookie.jwt, process.env.JWT_SECRET);
+            const decod = await promisify(jwt.verify)(req.cookies.jwt, process.env.JWT_SECRET);
             connection.query('SELECT * FROM usuario WHERE idUsuario = ?', [decod.idUsuario], (err, results) => {
                 if (!results) {return next();}
                 req.email = results[0];
