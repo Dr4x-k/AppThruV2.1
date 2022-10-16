@@ -39,10 +39,12 @@
     <div class="profile-content">
         <div class="profile">
             <div class="profile-details">
-                <img src="" alt="">
+                <!-- <img src="" alt=""> -->
                 <div class="name-job">
-                    <div class="name">Jorge Bernal</div>
+                    <% if (email) { %> 
+                    <div class="name"><%= email.nombres %><%= email.apellidoPaterno %> </div>
                     <div class="job">Developer</div>
+                    <% } %> 
                 </div>
             </div>
             <a class="link" href="logout"><i class='bx bx-log-out' id="log-out"></i></a>

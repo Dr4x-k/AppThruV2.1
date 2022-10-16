@@ -4,7 +4,7 @@ const accountController = require('../controllers/accountController');
 const routes = Router();
 
 routes.get('/', accountController.isAuthenticated, (req, res) => {
-    res.render('index', {email:req.email});
+    res.render('index', { email:req.email });
 });
 
 routes.get('/login', (req, res) => {

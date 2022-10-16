@@ -18,12 +18,12 @@ accountController.regData = async (req, res) => {
         const apellidoPaterno = '';
         const apellidoMaterno = '';
         const email = req.body.email;
-        const usuario = '';
+        const usuario = req.body.user;
         const contrasena = req.body.psw;
         let passHash = await bcrypt.hash(contrasena, 8);
         const fk_rol = 3;
 
-        connection.query('INSERT INTO usuario SET ?', { fk_rol, nombres, apellidoPaterno, apellidoMaterno, email, usuario, contrasena : passHash }, (err, results) => {
+        connection.query('INSERT INTO usuario SET ?', { nombres, apellidoPaterno, apellidoMaterno, email, usuario, contrasena : passHash, fk_rol }, (err, results) => {
             if (err) {
                 res.json(err);
                 throw err;
@@ -40,14 +40,6 @@ accountController.login = async (req, res) => {
     try {
         const email = req.body.email;
         const contrasena = req.body.pwd;
-        // console.log(email + '-' + contrasena)
-        // if (!email || !contrasena) {
-        //     res.render('login', {
-        //         alert: true,
-        //         alertTitle: 'Advertencia',
-        //         alertMessage: 'Ingrese '
-        //     })
-        // }
         connection.query('SELECT * FROM usuario WHERE email = ?', [email], async (err, results) => {
             if (results.length == 0 || !(await bcrypt.compare(contrasena, results[0].contrasena))) {
                 res.render('login', {

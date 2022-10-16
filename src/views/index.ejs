@@ -4,5 +4,8 @@
 </head>
 <body>
     <%- include('_partials/_nav.ejs') %>
-
+    <% if (email) { %> 
+        <div class="name"><%= email.nombres %></div>
+        <div class="job">Developer</div>
+        <% } %> 
     <%- include('_partials/_footer.ejs') %> 
