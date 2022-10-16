@@ -8,7 +8,7 @@ const accountController = {}
 accountController.data = (req, res) => {
     connection.query('SELECT * FROM usuario', (err, results) => {
         if (err) res.json(err);
-        
+        res.render('signup', {alert : false})
     });
 }
 
@@ -25,13 +25,17 @@ accountController.regData = async (req, res) => {
 
         connection.query('INSERT INTO usuario SET ?', { nombres, apellidoPaterno, apellidoMaterno, email, usuario, contrasena : passHash, fk_rol }, (err, results) => {
             if (err) {
-                res.json(err);
-                throw err;
+                res.render('signup', {
+                    alert: true,
+                    alertMessage: 'Email y/o usuario existentes'
+                });
+                // res.json(err);
+                // throw err;
             }
             res.redirect('/')
         });
     } catch (error) {
-        console.log(error)
+        console.log(error);
     }
     
 }
@@ -89,7 +93,7 @@ accountController.isAuthenticated = async (req, res, next) => {
                 if (!results) {return next();}
                 req.email = results[0];
                 return next();
-            })
+            });
         } catch (error) {
             console.log(error);
             return next();

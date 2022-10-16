@@ -17,7 +17,6 @@ function checkEmail() {
 }
 
 //
-
 const eyeIcons = document.querySelectorAll(".show-hide");
 //console.log(eyeIcons);
 
@@ -64,9 +63,4 @@ form.addEventListener("keyup", (e) => {
     emailInput.addEventListener("keyup", checkEmail);
     pswInput.addEventListener("keyup", createPass);
     cpswInput.addEventListener("keyup", confirmPass);
-    
-
-    // if ((!emailField.classList.contains("invalid")) && (!pswField.classList.contains("invalid") || !cpswField.classList.contains("invalid"))) {
-    //     location.href = form.getAttribute("action")
-    // }
 });

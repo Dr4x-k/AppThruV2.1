@@ -12,7 +12,7 @@ routes.get('/login', (req, res) => {
 });
 
 routes.get('/signup', (req, res) => {
-    res.render('signup');
+    res.render('signup', { alert:false });
 });
 
 routes.get('/account', (req, res) => {
