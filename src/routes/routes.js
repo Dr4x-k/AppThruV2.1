@@ -19,6 +19,10 @@ routes.get('/account', (req, res) => {
     res.render('accountSettings');
 });
 
+routes.get('/products', (req, res) => {
+    res.render('products');
+});
+
 routes.post('/signup', accountController.regData);
 routes.post('/login', accountController.login);
 routes.get('/logout', accountController.logout);
