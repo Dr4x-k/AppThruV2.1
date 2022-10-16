@@ -1,6 +1,7 @@
 const express = require('express');
 const morgan = require('morgan');
 const path = require('path');
+const cookieParser = require('cookie-parser');
 require('dotenv').config({ path: path.join(__dirname, './.env') });
 const routes = require('./routes/routes');
 const connection = require('./databases/connection');
@@ -22,6 +23,9 @@ app.use(express.static('src/public'));
 
 // routes (1)
 app.use('/', routes);
+
+// Cookies
+app.use(cookieParser());
 
 app.listen(app.get('port'), () => {
     console.log('servidor funcionando en el puerto', app.get('port'))

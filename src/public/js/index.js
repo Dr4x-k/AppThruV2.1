@@ -61,12 +61,12 @@ form.addEventListener("keyup", (e) => {
     createPass();
     confirmPass();
 
-    //if (emailInput.value !== "") emailInput.addEventListener("keyup", checkEmail);
-    //if (pswInput.value !== "") pswInput.addEventListener("keyup", createPass);
-    //if (cpswInput.value !== "") cpswInput.addEventListener("keyup", confirmPass);
+    emailInput.addEventListener("keyup", checkEmail);
+    pswInput.addEventListener("keyup", createPass);
+    cpswInput.addEventListener("keyup", confirmPass);
     
 
-    /* if (!emailField.classList.contains("invalid") && !pswField.classList.contains("invalid") && !cpswField.classList.contains("invalid")) {
-        location.href = form.getAttribute("action")
-    } */
+    // if ((!emailField.classList.contains("invalid")) && (!pswField.classList.contains("invalid") || !cpswField.classList.contains("invalid"))) {
+    //     location.href = form.getAttribute("action")
+    // }
 });

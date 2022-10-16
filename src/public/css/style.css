@@ -217,6 +217,11 @@ body {
     font-size: 12px;
 }
 
+.link {
+    text-decoration: none;
+    color: #fff;
+}
+
 .profile #log-out {
     position: absolute;
     bottom: 5px;
