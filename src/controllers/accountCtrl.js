@@ -7,9 +7,9 @@ const accountController = {}
 
 accountController.data = (req, res) => {
     connection.query(`SELECT * FROM usuario WHERE email = 'jabe.4124@gmail.com'`, (err, results) => {
-        console.log(results)
+        // console.log(results)
         if (err) res.json(err);
-        res.render('signup', {alert : false })
+        res.render('signup', { alert : false })
     });
 }
 
@@ -25,16 +25,15 @@ accountController.regData = async (req, res) => {
         const fk_rol = 3;
         
         connection.query(`SELECT email FROM usuario WHERE email = '${email}' OR usuario = '${usuario}'`, (err, results) => {
-            console.log(results)
+            // console.log(results)
             if (results.length == 0) {
+                // `Call insert_usuario (${nombres},${apellidoPaterno},${apellidoMaterno},${email},${usuario},${passHash},${fk_rol})`
                 connection.query('INSERT INTO usuario SET ?', { nombres, apellidoPaterno, apellidoMaterno, email, usuario, contrasena : passHash, fk_rol }, (err, results) => {
-                    
-                    
                     res.redirect('/login')
                 });
                 // console.log('email no encontrado')
             } else {
-                console.log('email encontrado');
+                // console.log('email encontrado');
                 res.render('signup', {
                     alert: true,
                     alertMessage: 'Email y/o usuario existentes'
