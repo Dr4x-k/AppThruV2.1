@@ -1,5 +1,5 @@
 const { Router } = require('express');
-const accountController = require('../controllers/accountController');
+const accountController = require('../controllers/accountCtrl');
 
 const routes = Router();
 
@@ -12,16 +12,17 @@ routes.get('/login', (req, res) => {
         email:req.email });
 });
 
-routes.get('/signup', (req, res) => {
-    res.render('signup', { alert:false, 
+routes.get('/signup', accountController.data, (req, res) => {
+    res.render('signup', { alert : false, 
         email:req.email });
 });
 
-routes.get('/account', (req, res) => {
-    res.render('accountSettings');
+routes.get('/account', accountController.isAuthenticated, (req, res) => {
+    res.render('accountSettings',
+    { email:req.email });
 });
 
-routes.get('/products', (req, res) => {
+routes.get('/products', accountController.isAuthenticated, (req, res) => {
     res.render('productos',
     { email:req.email });
 });

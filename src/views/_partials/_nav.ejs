@@ -16,7 +16,7 @@
         </li>
         <li>
             <a href="#">
-                <i class='bx bx-cart' ></i>
+                <i class='bx bx-package' ></i>
                 <span class="link-name">Pedidos</span>
             </a>
             <span class="tooltip">Pedidos</span>
@@ -28,16 +28,18 @@
             </a>
             <span class="tooltip">Productos</span>
         </li>
+        <% if ( email.fk_rol === 1) { %> 
         <li>
-            <a href="#">
-                <i class='bx bx-user' ></i>
+            <a href="account">
+                <i class='bx bx-group'></i>
                 <span class="link-name">Empleados</span>
             </a>
             <span class="tooltip">Empleados</span>
         </li>
+        <% } %> 
         <li>
             <a href="#">
-                <i class='bx bx-cog' ></i>
+                <i class='bx bx-user' ></i>
                 <span class="link-name">Configuracion</span>
             </a>
             <span class="tooltip">Configuracion</span>
