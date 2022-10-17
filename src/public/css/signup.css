@@ -15,7 +15,7 @@ body {
     background: linear-gradient(120deg,#29b9b2, #4644ad);
 }
 
-.container {
+.container-signup {
     position: relative;
     max-width: 370px;
     width: 100%;
@@ -24,13 +24,13 @@ body {
     background-color: #fff;
 }
 
-.container header {
+.container-signup header {
     font-size: 22px;
     font-weight: 600;
     color: #1d1b31;
 }
 
-.container form {
+.container-signup form {
     margin-top: 30px;
 }
 
