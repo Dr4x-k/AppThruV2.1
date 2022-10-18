@@ -17,9 +17,14 @@ routes.get('/signup', accountCtrl.data, (req, res) => {
         email:req.email });
 });
 
+// routes.get('/account', accountCtrl.isAuthenticated, (req, res) => {
+//     res.render('account',
+//     { email:req.email });
+// });
+
 routes.get('/account', accountCtrl.isAuthenticated, (req, res) => {
-    res.render('account',
-    { email:req.email });
+    res.render('account', { alert:false,
+        email:req.email });
 });
 
 routes.get('/products', accountCtrl.isAuthenticated, (req, res) => {
@@ -33,7 +38,7 @@ routes.get('/products', accountCtrl.isAuthenticated, (req, res) => {
 // })
 
 routes.post('/signup', accountCtrl.regAccount);
-routes.post('/account', accountCtrl.editAccount)
+routes.post('/account/:idUsuario', accountCtrl.editAccount)
 routes.post('/login', accountCtrl.login);
 routes.get('/logout', accountCtrl.logout);
 

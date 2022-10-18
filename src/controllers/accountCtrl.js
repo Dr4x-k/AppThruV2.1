@@ -7,10 +7,10 @@ const accountCtrl = {}
 
 accountCtrl.data = (req, res) => {
     const email = req.body.email;
-    connection.query(`SELECT * FROM usuario WHERE email = ${email}`, (err, results) => {
+    connection.query(`SELECT * FROM usuario WHERE email = ?`, [email], (err, results) => {
         // console.log(results)
         if (err) res.json(err);
-        res.render('signup', { alert : false })
+        res.render('account', { alert : false })
     });
 }
 
@@ -21,7 +21,7 @@ accountCtrl.regAccount = async (req, res) => {
         const contrasena = req.body.psw;
         let passHash = await bcrypt.hash(contrasena, 8);
         const fk_rol = 3;
-        let query = `SELECT email FROM usuario WHERE email = '${email}' OR usuario = '${usuario}'`;
+        let query = `SELECT email FROM usuario WHERE idUsuario = '${email}' OR usuario = '${usuario}'`;
         connection.query(query, (err, results) => {
             // console.log(results)
             if (results.length == 0) {
@@ -47,13 +47,28 @@ accountCtrl.regAccount = async (req, res) => {
 
 accountCtrl.editAccount = async (req, res) => {
     try {
+        const idUsuario = req.body.idUsuario;
         const nombres = req.body.names, apellidoPaterno = req.body.lastName, apellidoMaterno = req.body.sLastName;
         const email = req.body.email, usuario = req.body.user;
         const contrasena = req.body.psw;
         let passHash = await bcrypt.hash(contrasena, 8);
         // const fk_rol = 3;
-        connection.query(`UPDATE usuario SET ? WHERE email = ${email}`, { nombres, apellidoPaterno, apellidoPaterno, email, usuario, contrasena:passHash }, async (err, results) => {
-            console.log('hecho')
+        connection.query(`UPDATE usuario SET ? WHERE idUsuario = ${idUsuario}`, { nombres, apellidoPaterno, apellidoPaterno, email, usuario, contrasena:passHash }, async (err, results) => {
+            
+            if (err) {
+                throw err;
+            } else {
+                console.log('hecho')
+                res.redirect('../account', {
+                    alert: true,
+                    alertTitle: 'Error',
+                    alertMessage: 'Email y/o contraseña incorrectas',
+                    alertIcon: 'error',
+                    showConfirmButton: true,
+                    timer: false,
+                    ruta: 'login'
+                })
+            }
         })
     } catch (error) {
         
