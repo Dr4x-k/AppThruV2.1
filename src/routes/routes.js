@@ -1,9 +1,9 @@
 const { Router } = require('express');
-const accountController = require('../controllers/accountCtrl');
+const accountCtrl = require('../controllers/accountCtrl');
 
 const routes = Router();
 
-routes.get('/', accountController.isAuthenticated, (req, res) => {
+routes.get('/', accountCtrl.isAuthenticated, (req, res) => {
     res.render('index', { email:req.email });
 });
 
@@ -12,28 +12,29 @@ routes.get('/login', (req, res) => {
         email:req.email });
 });
 
-routes.get('/signup', accountController.data, (req, res) => {
+routes.get('/signup', accountCtrl.data, (req, res) => {
     res.render('signup', { alert : false, 
         email:req.email });
 });
 
-routes.get('/account', accountController.isAuthenticated, (req, res) => {
-    res.render('accountSettings',
+routes.get('/account', accountCtrl.isAuthenticated, (req, res) => {
+    res.render('account',
     { email:req.email });
 });
 
-routes.get('/products', accountController.isAuthenticated, (req, res) => {
+routes.get('/products', accountCtrl.isAuthenticated, (req, res) => {
     res.render('productos',
     { email:req.email });
 });
 
-routes.get('/account', (req, res) => {
-    res.render('accountSettings',
-    { email:req.email })
-})
+// routes.get('/account1', (req, res) => {
+//     res.render('account',
+//     { email:req.email })
+// })
 
-routes.post('/signup', accountController.regData);
-routes.post('/login', accountController.login);
-routes.get('/logout', accountController.logout);
+routes.post('/signup', accountCtrl.regAccount);
+routes.post('/account', accountCtrl.editAccount)
+routes.post('/login', accountCtrl.login);
+routes.get('/logout', accountCtrl.logout);
 
 module.exports = routes;

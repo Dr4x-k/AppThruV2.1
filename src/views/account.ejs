@@ -1,0 +1,51 @@
+<%- include('_partials/_header') %>
+    <title>Cuenta</title>
+    <link rel="stylesheet" href="css/account.css">
+</head>
+<body>
+    <%- include('_partials/_nav') %> 
+<div class="content">
+    <div class="container">
+        <h1 class="title">Perfil</h1>
+        <div class="contentr">
+            <form action="/account" method="post">
+                <div class="user-details">
+                    <div class="input-box">
+                        <span class="details">Nombres</span>
+                        <input id="names" type="text" name="" placeholder="Ingresa tu(s) nombre(s)" value="<%= email.nombres %>" required>
+                    </div>
+                    <div class="input-box">
+                        <span class="details">Primer apellido</span>
+                        <input id="lastName" type="text" name="" placeholder="Ingresa tu primer apellido" value="<%= email.apellidoPaterno %>" required>
+                    </div>
+                    <div class="input-box">
+                        <span class="details">Segundo apellido</span>
+                        <input id="sLastName" type="text" name="" placeholder="Ingresa tu segundo apellido" value="<%= email.apellidoMaterno %>" required>
+                    </div>
+                    <div class="input-box">
+                        <span class="details">Email</span>
+                        <input id="email" type="text" name="" placeholder="Ingresa tu email" value="<%= email.email %>" required>
+                    </div>
+                    <div class="input-box">
+                        <span class="details">Usuario</span>
+                        <input id="user" type="text" name="" placeholder="Ingresa un usuario" value="<%= email.usuario %>" required>
+                    </div>
+                    <div class="input-box">
+                    </div>
+                    <div class="input-box">
+                        <span class="details">Contraseña</span>
+                        <input id="psw" type="text" name="" placeholder="Ingresa una contraseña" value="<%= email.contrasena %>" required>
+                    </div>
+                    <div class="input-box">
+                        <span class="details">ID</span>
+                        <input id="idUsuario" type="text" name="" placeholder="Confirma tu contraseña" value="<%= email.idUsuario %>" required>
+                    </div>
+                </div>
+                <div class="button">
+                    <input type="submit" value="Guardar cambios">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<%- include('_partials/_footer') %> 

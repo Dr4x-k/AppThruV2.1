@@ -3,28 +3,26 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const { promisify } = require('util');
 
-const accountController = {}
+const accountCtrl = {}
 
-accountController.data = (req, res) => {
-    connection.query(`SELECT * FROM usuario WHERE email = 'jabe.4124@gmail.com'`, (err, results) => {
+accountCtrl.data = (req, res) => {
+    const email = req.body.email;
+    connection.query(`SELECT * FROM usuario WHERE email = ${email}`, (err, results) => {
         // console.log(results)
         if (err) res.json(err);
         res.render('signup', { alert : false })
     });
 }
 
-accountController.regData = async (req, res) => {
+accountCtrl.regAccount = async (req, res) => {
     try {
-        const nombres = '';
-        const apellidoPaterno = '';
-        const apellidoMaterno = '';
-        const email = req.body.email;
-        const usuario = req.body.user;
+        const nombres = '', apellidoPaterno = '', apellidoMaterno = '';
+        const email = req.body.email, usuario = req.body.user;
         const contrasena = req.body.psw;
         let passHash = await bcrypt.hash(contrasena, 8);
         const fk_rol = 3;
-        
-        connection.query(`SELECT email FROM usuario WHERE email = '${email}' OR usuario = '${usuario}'`, (err, results) => {
+        let query = `SELECT email FROM usuario WHERE email = '${email}' OR usuario = '${usuario}'`;
+        connection.query(query, (err, results) => {
             // console.log(results)
             if (results.length == 0) {
                 // `Call insert_usuario (${nombres},${apellidoPaterno},${apellidoMaterno},${email},${usuario},${passHash},${fk_rol})`
@@ -47,7 +45,22 @@ accountController.regData = async (req, res) => {
     
 }
 
-accountController.login = async (req, res) => {
+accountCtrl.editAccount = async (req, res) => {
+    try {
+        const nombres = req.body.names, apellidoPaterno = req.body.lastName, apellidoMaterno = req.body.sLastName;
+        const email = req.body.email, usuario = req.body.user;
+        const contrasena = req.body.psw;
+        let passHash = await bcrypt.hash(contrasena, 8);
+        // const fk_rol = 3;
+        connection.query(`UPDATE usuario SET ? WHERE email = ${email}`, { nombres, apellidoPaterno, apellidoPaterno, email, usuario, contrasena:passHash }, async (err, results) => {
+            console.log('hecho')
+        })
+    } catch (error) {
+        
+    }
+}
+
+accountCtrl.login = async (req, res) => {
     try {
         const email = req.body.email;
         const contrasena = req.body.pwd;
@@ -92,12 +105,12 @@ accountController.login = async (req, res) => {
     }
 }
 
-accountController.isAuthenticated = async (req, res, next) => {
+accountCtrl.isAuthenticated = async (req, res, next) => {
     if (req.cookies.jwt) {
         try {
             const decod = await promisify(jwt.verify)(req.cookies.jwt, process.env.JWT_SECRET);
             connection.query('SELECT * FROM usuario WHERE idUsuario = ?', [decod.idUsuario], (err, results) => {
-                if (!results) {return next();}
+                if (!results) { return next(); }
                 req.email = results[0];
                 return next();
             });
@@ -110,9 +123,9 @@ accountController.isAuthenticated = async (req, res, next) => {
     }
 }
 
-accountController.logout = (req, res) => {
+accountCtrl.logout = (req, res) => {
     res.clearCookie('jwt');
     return res.redirect('/');
 }
 
-module.exports = accountController;
+module.exports = accountCtrl;
