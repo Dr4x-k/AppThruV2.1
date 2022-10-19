@@ -48,30 +48,37 @@ accountCtrl.regAccount = async (req, res) => {
 accountCtrl.editAccount = async (req, res) => {
     try {
         const idUsuario = req.body.idUsuario;
-        const nombres = req.body.names, apellidoPaterno = req.body.lastName, apellidoMaterno = req.body.sLastName;
-        const email = req.body.email, usuario = req.body.user;
-        const contrasena = req.body.psw;
-        let passHash = await bcrypt.hash(contrasena, 8);
+        const nombres = req.body.nombres, apellidoPaterno = req.body.apellidoPaterno, apellidoMaterno = req.body.apellidoMaterno;
+        const email = req.body.email, usuario = req.body.usuario;
+        const contrasena = req.body.contrasena;
+        let passHash;
         // const fk_rol = 3;
-        connection.query(`UPDATE usuario SET ? WHERE idUsuario = ${idUsuario}`, { nombres, apellidoPaterno, apellidoPaterno, email, usuario, contrasena:passHash }, async (err, results) => {
-            
-            if (err) {
-                throw err;
-            } else {
-                console.log('hecho')
-                res.redirect('../account', {
-                    alert: true,
-                    alertTitle: 'Error',
-                    alertMessage: 'Email y/o contraseña incorrectas',
-                    alertIcon: 'error',
-                    showConfirmButton: true,
-                    timer: false,
-                    ruta: 'login'
-                })
-            }
-        })
-    } catch (error) {
         
+        connection.query(`SELECT * FROM usuario WHERE idUsuario = ${idUsuario}`, async (err, results) => {
+            console.log(results[0]);
+            // spread operator - check letter
+            let vari = results[0];
+            let clone = {...vari}
+            clone = {...clone, ...req.body}
+            if (clone.contrasena == '') {
+                clone.contrasena = vari.contrasena;
+                passHash = vari.contrasena;
+            } else {
+                passHash = await bcrypt.hash(contrasena, 8);
+            }
+            console.log(clone)
+            connection.query(`UPDATE usuario SET ? WHERE idUsuario = ${idUsuario}`, { nombres, apellidoPaterno, apellidoMaterno, email, usuario, contrasena:passHash }, async (err, results) => {
+                
+                if (err) {
+                    throw err;
+                } else {
+                    console.log('hecho')
+                    res.redirect('/account')
+                }
+            })
+        });
+        } catch (error) {
+            
     }
 }
 
@@ -98,7 +105,7 @@ accountCtrl.login = async (req, res) => {
                 })
                 // Token sin tiempo de expiracion
                 // const token = jwt.sign({idUsuario:idUsuario}, process.env.JWT_SECRET); 
-                console.log(token)
+                // console.log(token)
                 const cookieOptions = {
                     expires: new Date(Date.now()+process.env.JWT_COOKIE_EXPIRES * 24 * 60 * 60 * 1000),
                     httpOnly: true
