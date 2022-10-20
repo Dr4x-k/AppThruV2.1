@@ -3,22 +3,23 @@
   </head>
   <body>
     <div class="center">
-      <h1 class="login-h1">Login</h1>
-      <form action="/login" method="post">
-        <div class="txt_field">
-          <input name="email" type="text" required>
-          <span></span>
-          <label>Usuario / Email</label>
-        </div>
-        <div class="txt_field">
-          <input name="pwd" type="password" required>
-          <span></span>
-          <label>Contraseña</label>
-        </div>
-        <input type="submit" value="Login">
-        <div class="signup_link">
-        </div>
-      </form>
+        <h1 class="login-h1">Login</h1>
+        <form action="/login" method="post">
+            <div class="txt_field">
+            <input name="email" type="text" required>
+            <span></span>
+            <label>Usuario / Email</label>
+            </div>
+            <div class="txt_field">
+            <input name="pwd" type="password" required>
+            <span></span>
+            <label>Contraseña</label>
+            </div>
+            <input type="submit" value="Login">
+            <div class="signup_link">
+                <a href="/signup" class="signup_link">Registrarse</a>
+            </div>
+        </form>
     </div>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <% if (alert) { %>
