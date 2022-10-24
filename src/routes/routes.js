@@ -1,5 +1,7 @@
 const { Router } = require('express');
 const accountCtrl = require('../controllers/accountCtrl');
+const employesCtrl = require('../controllers/employesCtrl');
+const connection = require('../databases/connection');
 
 const routes = Router();
 
@@ -20,6 +22,13 @@ routes.get('/signup', (req, res) => {
 routes.get('/account', accountCtrl.isAuthenticated, (req, res) => {
     res.render('account', { alert:false,
         email:req.email });
+});
+
+routes.get('/employes', accountCtrl.isAuthenticated, (req, res) => {
+    connection.query('SELECT * FROM viewusuarios', (err, results) => {
+        if (err) throw err;
+        else res.render('employes', { results: results, email:req.email});
+    });
 });
 
 routes.get('/products', accountCtrl.isAuthenticated, (req, res) => {

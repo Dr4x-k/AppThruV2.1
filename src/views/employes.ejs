@@ -4,23 +4,65 @@
 </head>
 <body>
     <%- include('_partials/_nav.ejs') %>
+    <div class="content">
 
-    <table id="datatable" class="datatable">
-        <thead>
-            <tr>
-                <th>id</th>
-                <th>Nombres</th>
-                <th>A. Paterno</th>
-                <th>A. Materno</th>
-                <th>Cargo</th>
-                <th>Opciones</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td></td>
-            </tr>
-        </tbody>
-    </table>
+        <div class="datatable-container">
+            <div class="header-tools">
+                <div class="tools">
+                    <ul>
+                        <li><span><input type="checkbox"></span></li>
+                        <button></button>
+                    </ul>
+                </div>
+                <div class="search">
+                    <input type="text" name="" id="">
+                </div>
+            </div>
+            <table id="datatable" class="datatable">
+                <thead>
+                    <tr>
+                        <th>id</th>
+                        <th>Nombres</th>
+                        <th>A. Paterno</th>
+                        <th>A. Materno</th>
+                        <th>Usuario</th>
+                        <th>Cargo</th>
+                        <th>Opciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% if (results) { %>
+                        <% for (var i = 0; i < results.length; i++) { %> 
+                    <tr>
+                        <td><%= results[i].idUsuario %></td>
+                        <td><%= results[i].nombres %></td>
+                        <td><%= results[i].apellidoPaterno %></td>
+                        <td><%= results[i].apellidoMaterno %></td>
+                        <td><%= results[i].usuario %></td>
+                        <td><%= results[i].rol %></td>
+                    </tr>
+                        <% } %> 
+                    <% } %> 
+                </tbody>
+            </table>
+            <div class="footer-tools">
+                <div class="list-items">
+                    Show
+                    <select name="" id="">
+                        <option value="5">5</option>
+                        <option value="10" selected>10</option>
+                        <option value="15">15</option>
+                    </select>
+                    <div class="pages">
+                        <ul>
+                            <li><span class="active"></span></li>
+                            <li><button>2</button></li>
+                            <li><button>3</button></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <%- include('_partials/_footer.ejs') %> 
