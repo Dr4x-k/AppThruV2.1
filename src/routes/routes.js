@@ -1,6 +1,7 @@
 const { Router } = require('express');
 const accountCtrl = require('../controllers/accountCtrl');
 const employesCtrl = require('../controllers/employesCtrl');
+const productsCtrl = require('../controllers/productsCtrl')
 const connection = require('../databases/connection');
 
 const routes = Router();
@@ -32,8 +33,11 @@ routes.get('/employes', accountCtrl.isAuthenticated, (req, res) => {
 });
 
 routes.get('/products', accountCtrl.isAuthenticated, (req, res) => {
-    res.render('productos',
-    { email:req.email });
+    connection.query('SELECT * FROM viewproductos', (err, results) => {
+        if (err) throw err;
+        else {res.render('products', { results: results, email:req.email }); console.log(results)}
+    })
+    
 });
 
 routes.post('/signup', accountCtrl.regAccount);

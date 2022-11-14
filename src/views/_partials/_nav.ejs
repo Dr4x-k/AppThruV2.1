@@ -28,7 +28,7 @@
             </a>
             <span class="tooltip">Productos</span>
         </li>
-        <% if ( email.fk_rol === 1) { %> 
+        <% if ( email.rol === "Administrador") { %> 
         <li>
             <a href="/employes">
                 <i class='bx bx-group'></i>
@@ -52,7 +52,7 @@
                 <div class="name-job">
                     <% if (email) { %> 
                     <div class="name"><%= email.nombres %> <%= email.apellidoPaterno %> </div>
-                    <div class="job">Developer</div>
+                    <div class="job"><%= email.rol %></div>
                     <% } %> 
                 </div>
             </div>

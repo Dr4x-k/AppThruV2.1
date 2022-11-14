@@ -7,7 +7,7 @@ const accountCtrl = {}
 
 accountCtrl.data = (req, res) => {
     const email = req.body.email;
-    connection.query(`SELECT * FROM usuario WHERE email = ?`, [email], (err, results) => {
+    connection.query(`SELECT * FROM viewusuarios WHERE email = ?`, [email], (err, results) => {
         // console.log(results)
         if (err) res.json(err);
         res.render('account', { alert : false })
@@ -131,7 +131,7 @@ accountCtrl.isAuthenticated = async (req, res, next) => {
     if (req.cookies.jwt) {
         try {
             const decod = await promisify(jwt.verify)(req.cookies.jwt, process.env.JWT_SECRET);
-            connection.query('SELECT * FROM usuario WHERE idUsuario = ?', [decod.idUsuario], (err, results) => {
+            connection.query('SELECT * FROM viewusuarios WHERE idUsuario = ?', [decod.idUsuario], (err, results) => {
                 if (!results) { return next(); }
                 req.email = results[0];
                 return next();

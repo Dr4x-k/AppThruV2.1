@@ -1,0 +1,90 @@
+<%- include('_partials/_header.ejs') %> 
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10.0.2/dist/sweetalert2.min.css"> 
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.22/css/dataTables.bootstrap5.min.css">
+
+    <title>Productos</title>
+</head>
+<body>
+    <%- include('_partials/_nav.ejs') %>
+    <div class="content">
+        <!-- <div class="container"> -->
+            <table class="table" id="tableProducts">
+                <caption>Productos</caption>
+                <thead>
+                    <tr>
+                        <th>Producto</th>
+                        <th>Descripción</th>
+                        <th>Precio</th>
+                        <th>Categoria</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% if (results) { %> 
+                        <% for (var i = 0; i < results.length; i++) { %> 
+                        <tr>
+                            <td><%= results[i].nombreProducto %></td>
+                            <td><%= results[i].descripcion %></td>
+                            <td><%= results[i].precio %></td>
+                            <td><%= results[i].categoria %></td>
+                            <td>
+                                <a href="update/<%= results[i].idProducto %>" class="btn btn-primary"><i class="fas fa-edit"></i> Editar</a>
+                                <a onclick="confirmation(<%= results[i].idProducto %>);" class="btn btn-danger"><i class="fas fa-trash"></i> Borrar</a>
+                            </td>
+                        </tr>
+                        <% } %>
+                    <% }; %>
+                </tbody>
+            </table>
+        <!-- </div> -->
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.17/dist/sweetalert2.all.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
+        
+    <!-- <script>
+        $(document).ready(function () {
+            $('#tableProducts').DataTable();
+        });
+
+        function confirmation(idProducto) {
+            const swalWithBootstrapButtons = Swal.mixin({
+            customClass: {
+                confirmButton: 'btn btn-success upd',
+                cancelButton: 'btn btn-danger upd'
+            },
+            buttonsStyling: false
+            })
+
+            swalWithBootstrapButtons.fire({
+            title: '¿Borrar el producto ' + idProducto + '?',
+            text: "¡Estos cambios no se pueden revertir!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Borrar',
+            cancelButtonText: 'Cancelar',
+            reverseButtons: true
+            }).then((result) => {
+            if (result.isConfirmed) {
+                swalWithBootstrapButtons.fire(
+                'Producto eliminado!',
+                'El producto a sido eliminado.',
+                'success',
+                )
+                window.location = '/delete/' + idProducto;
+            } else if (
+                /* Read more about handling dismissals below */
+                result.dismiss === Swal.DismissReason.cancel
+            ) {
+                swalWithBootstrapButtons.fire(
+                'Cancelado',
+                'Tú lista de productos no ha sido actualizada',
+                'error'
+                )
+            }
+            })
+        }
+    </script> -->
+</body>
+</html>
