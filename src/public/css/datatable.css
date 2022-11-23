@@ -1,0 +1,76 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@700&family=Poppins:wght@400;500;600&display=swap');
+
+.datatable-container {
+    border-radius: 3px;
+    width: 600px;
+    margin: 0 auto;
+    font-size: 12px;
+}
+
+.datatable-container .header-tools {
+    border-bottom: solid 1px;
+    padding: 12px;
+    display: flex;
+    align-items: baseline;
+}
+
+.datatable-container .header-tools .search {
+    width: 30%;
+}
+
+.datatable-container .header-tools .search .search-input {
+    width: 100%;
+    background-color: white;
+    display: block;
+    box-sizing: border-box;
+    border-radius: 3px;
+    border: solid 1px;
+    color: black;
+}
+
+.datatable-container .header-tools .tools {
+    width: 70%;
+}
+
+.datatable-container .header-tools .tools ul {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: start;
+    align-items: baseline;
+}
+
+.datatable-container .header-tools .tools ul li {
+    display: inline-block;
+    margin: 0 2px;
+    align-items: baseline;
+}
+
+.datatable-container .footer-tools {
+    padding: 12px;
+    display: flex;
+    align-items: baseline;
+}
+
+.datatable-container .footer-tools .list-items {
+    width: 50%;
+}
+
+.datatable-container .footer-tools .pages {
+    margin-left: auto;
+    margin-right: 0;
+    width: 50%;
+}
+
+.datatable-container .footer-tools .pages ul {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: baseline;
+    justify-content: flex-end;
+}
+
+.datatable-container .footer-tools .pages ul li {
+    display: inline-block;
+    margin: 0 2px;
+}

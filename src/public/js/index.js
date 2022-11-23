@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     const btn = document.getElementById('btn'),
-     sidebar = document.getElementById('sidebar');
+        sidebar = document.getElementById('sidebar');
     
     btn.addEventListener('click', () => {
         if (!sidebar.classList.contains("active")) {
@@ -9,5 +9,5 @@ document.addEventListener('DOMContentLoaded', () => {
             sidebar.classList.remove("active");
         }
     });
-    console.log(sidebar)
+    // console.log(sidebar)
 });
