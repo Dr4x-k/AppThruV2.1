@@ -1,15 +1,20 @@
 <%- include('_partials/_header.ejs') %> 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10.0.2/dist/sweetalert2.min.css"> 
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.22/css/dataTables.bootstrap5.min.css">
+  
 <script src="js/productsTable.js"></script>
 <title>Productos</title>
 </head>
 <body>
+ 
+
+
     <%- include('_partials/_nav.ejs') %>
     <div class="content">
-        <!-- <div class="container"> -->
+    
+         <div class="container"> 
             <table class="table" id="tableProducts">
                 <!-- <caption>Productos</caption> -->
+                <a onclick="addProduct();" style="background-color: rgb(183, 171, 171);">Agregar</a>
                 <thead>
                     <tr>
                         <th>Producto</th>
@@ -28,8 +33,8 @@
                                 <td><%= results[i].precio %></td>
                                 <td><%= results[i].categoria %></td>
                                 <td>
-                                    <a href="update/<%= results[i].idProducto %>" class="btn btn-primary"><i class="fas fa-edit"></i> Editar</a>
-                                    <a onclick="confirmation(<%= results[i].idProducto %>);" class="btn btn-danger"><i class="fas fa-trash"></i> Borrar</a>
+                                    <!-- <a href="update/<%= results[i].idProducto %>" class="btn btn-primary"><i class="fas fa-edit"></i> Editar</a> -->
+                                    <a onclick="confirmation(<%= results[i].idProducto %>);" ><i class='bx bx-trash'></i></i> Borrar</a>
                                 </td>
                         </tr>
                         <% } %>
@@ -39,13 +44,9 @@
                 <!-- </div> -->
             </div>
             <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.17/dist/sweetalert2.all.min.js"></script>
-            <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-            <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
-            <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
-            <!-- <script>
+            <script>
                 $(document).ready(function () {
                     $('#tableProducts').DataTable();
                 });
-            </script> -->
-
+            </script>
 <%- include('_partials/_footer') %> 

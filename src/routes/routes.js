@@ -42,6 +42,10 @@ routes.get('/products', accountCtrl.isAuthenticated, (req, res) => {
 
 routes.post('/signup', accountCtrl.regAccount);
 routes.post('/account/:idUsuario', accountCtrl.editAccount)
+routes.get('/deleteProduct/:idProducto', productsCtrl.delete, (req, res) => {
+    res.redirect('/productos');
+});
+
 routes.post('/login', accountCtrl.login);
 routes.get('/logout', accountCtrl.logout);
 
