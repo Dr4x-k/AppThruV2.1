@@ -2,24 +2,28 @@
     <title>AppThru</title>
   </head>
   <body>
-    <div class="center">
-        <h1 class="login-h1">Login</h1>
-        <form action="/login" method="post">
-            <div class="txt_field">
-            <input name="email" type="text" required>
-            <span></span>
-            <label>Usuario / Email</label>
+    <div class="container">
+        <div class="row vh-100 align-items-center justify-content-center">
+            <div class="col-sm-8 col-md-6 col-lg-4 bg-white rounded p-4 shadow">
+                <div class="row justify-content-center mb-4">
+                    <!-- <img src="" alt="" class="w-25"/> -->
+                    <h1>Iniciar sesi&oacute;n</h1>
+                </div>
+                <form action="/login" method="post">
+                    <div class="mb-4">
+                        <label for="email" class="form-label">Email/Usuario</label>
+                        <input id="email" name="email" type="text" class="form-control">
+                    </div>
+                    <div class="mb-4">
+                        <label for="password" class="form-label">Contrase&ntilde;a</label>
+                        <input id="password" name="pwd" type="password" class="form-control">
+                    </div>
+                    <input type="submit" class="btn btn-primary w-100" value="Iniciar Sesion">
+                    <!-- <button class="btn btn-primary w-100">Iniciar Sesion</button> -->
+                </form>
+                <p class="mb-0 text-center">A&uacute;n no est&aacute;s registrado? <a href="/signup" class="text-decoration-none">Registrate aqu&iacute;!</a></p>
             </div>
-            <div class="txt_field">
-            <input name="pwd" type="password" required>
-            <span></span>
-            <label>Contraseña</label>
-            </div>
-            <input type="submit" value="Login">
-            <div class="signup_link">
-                <a href="/signup" class="signup_link">Registrarse</a>
-            </div>
-        </form>
+        </div>
     </div>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <% if (alert) { %>

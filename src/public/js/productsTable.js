@@ -1,12 +1,13 @@
-async function addProduct() {
+async function addProduct2() {
     const { value: formValues } = await Swal.fire({
-        title: 'Add Product',
+        title: 'Agregar Producto',
         html:
         '<input placeholder="producto" id="swal-input1" class="swal2-input">' +
         '<input placeholder="Descripcion"  id="swal-input2" class="swal2-input">' +
         '<input placeholder="Precio" id="swal-input3" class="swal2-input">' +
         '<input placeholder="Stoke" id="swal-input4" class="swal2-input">' +
         '<input placeholder="Categoria" id="swal-input5" class="swal2-input">',
+        // '<input type="submit" value="Agregar" class="btn btn-success swal2-input">',
         focusConfirm: false,
         preConfirm: () => {
           return [
@@ -23,7 +24,11 @@ async function addProduct() {
         Swal.fire(JSON.stringify(formValues))
       }
 }
-    
+ 
+function addProduct() {
+	$.post("../controller/")
+}
+
 function confirmation(idProducto) {
     // alert('Hola');
     const swalWithBootstrapButtons = Swal.mixin({
