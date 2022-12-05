@@ -55,7 +55,7 @@ accountCtrl.editAccount = async (req, res) => {
         // const fk_rol = 3;
         
         connection.query(`SELECT * FROM usuario WHERE idUsuario = ${idUsuario}`, async (err, results) => {
-            console.log(results[0]);
+            // console.log(results[0]);
             // spread operator - check letter
             let vari = results[0];
             let clone = {...vari}
@@ -66,13 +66,13 @@ accountCtrl.editAccount = async (req, res) => {
             } else {
                 passHash = await bcrypt.hash(contrasena, 8);
             }
-            console.log(clone)
+            // console.log(clone)
             connection.query(`UPDATE usuario SET ? WHERE idUsuario = ${idUsuario}`, { nombres, apellidoPaterno, apellidoMaterno, email, usuario, contrasena:passHash }, async (err, results) => {
                 
                 if (err) {
                     throw err;
                 } else {
-                    console.log('hecho')
+                    // console.log('hecho')
                     res.redirect('/account')
                 }
             })

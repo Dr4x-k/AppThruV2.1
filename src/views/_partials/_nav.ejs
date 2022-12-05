@@ -1,4 +1,4 @@
-<div class="sidebar" id="sidebar">
+<div class="sidebar-main" id="sidebar">
     <div class="logo-content">
         <div class="logo">
             <i class='bx bxs-store' ></i>
@@ -6,49 +6,50 @@
         </div>
         <i class='bx bx-menu' id="btn"></i>
     </div>
-    <ul class="nav-list">
-        <li>
-            <a href="/">
-                <i class='bx bx-grid-alt' ></i>
-                <span class="link-name">Dashboard</span>
-            </a>
-            <span class="tooltip">Dashboard</span>
-        </li>
-        <li>
-            <a href="#">
-                <i class='bx bx-package' ></i>
-                <span class="link-name">Pedidos</span>
-            </a>
-            <span class="tooltip">Pedidos</span>
-        </li>
-        <li>
-            <a href="/products">
-                <i class='bx bx-cart' ></i>
-                <span class="link-name">Productos</span>
-            </a>
-            <span class="tooltip">Productos</span>
-        </li>
-        <% if ( email.rol === "Administrador") { %>
-        <li>
-            <a href="/employes">
-                <i class='bx bx-group'></i>
-                <span class="link-name">Empleados</span>
-            </a>
-            <span class="tooltip">Empleados</span>
-        </li>
-        <% } %> 
-        <li>
-            <a href="/account">
-                <i class='bx bx-user' ></i>
-                <span class="link-name">Configuracion</span>
-            </a>
-            <span class="tooltip">Configuracion</span>
-        </li>
-    </ul>
+    <div class="navi">
+      <li>
+          <a href="/">
+              <i class='bx bx-grid-alt' ></i>
+              <span class="link-names">Dashboard</span>
+          </a>
+          <span class="tooltips">Dashboard</span>
+      </li>
+      <li>
+          <a href="#">
+              <i class='bx bx-package' ></i>
+              <span class="link-names">Pedidos</span>
+          </a>
+          <span class="tooltips">Pedidos</span>
+      </li>
+      <li>
+          <a href="/products">
+              <i class='bx bx-cart' ></i>
+              <span class="link-names">Productos</span>
+          </a>
+          <span class="tooltips">Productos</span>
+      </li>
+      <% if ( email.rol === "Administrador") { %>
+      <li>
+          <a href="/employes">
+              <i class='bx bx-group'></i>
+              <span class="link-names">Empleados</span>
+          </a>
+          <span class="tooltips">Empleados</span>
+      </li>
+      <% } %> 
+      <li>
+          <a href="/account">
+              <i class='bx bx-user' ></i>
+              <span class="link-names">Configuracion</span>
+          </a>
+          <span class="tooltips">Configuracion</span>
+      </li>
+
+    </div>
     <div class="profile-content">
         <div class="profile">
             <div class="profile-details">
-                <!-- <img src="" alt=""> -->
+                <img src="" alt="">
                 <div class="name-job">
                     <% if (email) { %> 
                     <div class="name"><%= email.nombres %> <%= email.apellidoPaterno %> </div>

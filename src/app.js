@@ -28,7 +28,7 @@ app.use(express.static('src/public'));
 app.use('/', routes);
 
 app.listen(app.get('port'), () => {
-    console.log('servidor funcionando en el puerto', app.get('port'))
+    console.log('servidor funcionando en el puerto', app.get('port'));
 });
 
 module.exports = app;

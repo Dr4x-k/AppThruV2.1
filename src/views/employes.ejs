@@ -6,7 +6,44 @@
     <%- include('_partials/_nav.ejs') %>
     <div class="content">
 
-        <div class="datatable-container">
+        <div class="container"> 
+            <table class="table" id="tableProducts">
+                <!-- <caption>Productos</caption> -->
+                <a class="btn btn-primary" onclick="addProduct();">Agregar</a>
+                <thead>
+                    <tr>
+                        <th>id</th>
+                        <th>Nombres</th>
+                        <th>A. Paterno</th>
+                        <th>A. Materno</th>
+                        <th>Usuario</th>
+                        <th>Cargo</th>
+                        <th>Opciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% if (results) { %>
+                        <% for (var i = 0; i < results.length; i++) { %> 
+                    <tr>
+                        <td><%= results[i].idUsuario %></td>
+                        <td><%= results[i].nombres %></td>
+                        <td><%= results[i].apellidoPaterno %></td>
+                        <td><%= results[i].apellidoMaterno %></td>
+                        <td><%= results[i].usuario %></td>
+                        <td><%= results[i].rol %></td>
+                        <td>
+                            <!-- <a href="update/<%= results[i].idProducto %>" class="btn btn-primary"><i class="fas fa-edit"></i> Editar</a> -->
+                            <a onclick="deleteUser(<%= results[i].idProducto %>);" ><i class='bx bx-trash'></i></i> Borrar</a>
+                        </td>
+                    </tr>
+                        <% } %> 
+                    <% } %> 
+                    </tbody>
+                </table>
+                <!-- </div> -->
+            </div>
+
+        <!-- <div class="datatable-container">
             <div class="header-tools">
                 <div class="tools">
                     <ul>
@@ -63,6 +100,12 @@
                 </div>
             </div>
         </div>
-    </div>
-
+    </div> -->
+    <%- include('_partials/_datatable') %>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.17/dist/sweetalert2.all.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#tableProducts').DataTable();
+        });
+    </script>
     <%- include('_partials/_footer.ejs') %> 

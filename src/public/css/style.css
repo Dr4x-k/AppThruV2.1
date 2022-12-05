@@ -15,7 +15,7 @@ body {
     overflow: hidden;
 }
 
-.sidebar {
+.sidebar-main {
     position: fixed;
     top: 0;
     left: 0;
@@ -26,11 +26,11 @@ body {
     transition: all 0.5s ease;
 }
 
-.sidebar.active {
+.sidebar-main.active {
     width: 240px;
 }
 
-.sidebar .logo-content .logo {
+.sidebar-main .logo-content .logo {
     color: #fff;
     display: flex;
     height: 50px;
@@ -41,7 +41,7 @@ body {
     transition: all 0.5s ease;
 }
 
-.sidebar.active .logo-content .logo {
+.sidebar-main.active .logo-content .logo {
     opacity: 1;
     pointer-events: none;
 }
@@ -56,7 +56,7 @@ body {
     font-weight: 400;
 }
 
-.sidebar #btn {
+.sidebar-main #btn {
     position: absolute;
     color: #fff;
     top: 6px;
@@ -69,15 +69,15 @@ body {
     transform: translateX(-50%);
 }
 
-.sidebar.active #btn {
+.sidebar-main.active #btn {
     left: 90%;
 }
 
-.sidebar ul {
+.sidebar .navi {
     margin-top: 20px;
 }
 
-.sidebar ul li {
+.sidebar-main .navi li {
     position: relative;
     height: 50px;
     width: 100%;
@@ -86,7 +86,7 @@ body {
     line-height: 50px;
 }
 
-.sidebar ul li .tooltip {
+.sidebar-main .navi li .tooltips {
     position: absolute;
     left: 122px;
     top: 0%;
@@ -104,18 +104,18 @@ body {
     display: block;
 }
 
-.sidebar.active ul li .tooltip {
+.sidebar-main.active .navi li .tooltips {
     display: none;
 
 }
 
-.sidebar ul li:hover .tooltip {
+.sidebar-main .navi li:hover .tooltips {
     transition: all 0.5s ease;
     opacity: 1;
     top: 50%;
 }
 
-.sidebar ul li input {
+/* .sidebar-main .navi li input {
     position: absolute;
     height: 100%;
     width: 100%;
@@ -128,9 +128,9 @@ body {
     padding-left: 50px;
     font-size: 18px;
     color: #fff;
-}
+} */
 
-.sidebar ul li a {
+.sidebar-main .navi li a {
     color: #fff;
     display: flex;
     align-items: center;
@@ -140,12 +140,12 @@ body {
     white-space: nowrap;
 }
 
-.sidebar ul li a:hover {
+.sidebar-main .navi li a:hover {
     color: #11101d;
     background: #fff;
 }
 
-.sidebar ul li a i {
+.sidebar-main .navi li a i {
     height: 50px;
     min-width: 50px;
     border-radius: 12px;
@@ -153,18 +153,18 @@ body {
     text-align: center;
 }
 
-.sidebar .link-name {
+.sidebar-main .link-names {
     opacity: 0;
     pointer-events: none;
     transition: all 0.5s ease;
 }
 
-.sidebar.active .link-name {
+.sidebar-main.active .link-names {
     opacity: 1;
     pointer-events: auto;
 }
 
-.sidebar .profile-content {
+.sidebar-main .profile-content {
     position: absolute;
     color: #fff;
     bottom: 0;
@@ -172,7 +172,7 @@ body {
     width: 100%;
 }
 
-.sidebar .profile-content .profile {
+.sidebar-main .profile-content .profile {
     position: relative;
     padding: 10px 6px;
     height: 60px;
@@ -180,7 +180,7 @@ body {
     transition: all 0.4s ease;
 }
 
-.sidebar.active .profile-content .profile {
+.sidebar-main.active .profile-content .profile {
     background: #1d1b31;
 }
 
@@ -192,7 +192,7 @@ body {
     white-space: nowrap;
 }
 
-.sidebar.active .profile .profile-details {
+.sidebar-main.active .profile .profile-details {
     opacity: 1;
     pointer-events: auto;
 }
@@ -236,11 +236,11 @@ body {
     background: #1d1b31;
 }
 
-.sidebar.active .profile #log-out {
+.sidebar-main.active .profile #log-out {
     left: 88%;
 }
 
-.sidebar.active .profile #log-out {
+.sidebar-main.active .profile #log-out {
     background: none;
 }
 
@@ -264,7 +264,7 @@ body {
     margin: 12px;
 }
 
-.sidebar.active ~ .content {
+.sidebar-main.active ~ .content {
     width: calc(100% - 240px);
     left: 240px;
     

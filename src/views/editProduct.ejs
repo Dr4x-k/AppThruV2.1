@@ -10,13 +10,13 @@
     <main>
       <div class="row g-5">
         <div class="col-md-7 col-lg-8">
-          <h4 class="mb-3">Ajustes de cuenta</h4>
+          <h4 class="mb-3">Actualizar producto</h4>
           <% if (email) { %>
             <form action="/account/<%= email.idUsuario %>" method="post">
             <div class="row g-3">
               <div class="col-sm-12">
-                <label for="nombres" class="form-label">Nombres</label>
-                <input type="text" class="form-control" id="nombres" name="nombres" placeholder="" value="<%= email.nombres %>" required>
+                <label for="codigoBarras" class="form-label">C&oacute;digo de barras</label>
+                <input type="text" class="form-control" id="codigoBarras" name="codigoBarras" placeholder="" value="<%= email.nombres %>" required>
                 <div class="invalid-feedback">
                   Valid first name is required.
                 </div>

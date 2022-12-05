@@ -5,16 +5,13 @@
 <title>Productos</title>
 </head>
 <body>
- 
-
-
     <%- include('_partials/_nav.ejs') %>
     <div class="content">
     
          <div class="container"> 
             <table class="table" id="tableProducts">
                 <!-- <caption>Productos</caption> -->
-                <a onclick="addProduct();" style="background-color: rgb(183, 171, 171);">Agregar</a>
+                <a class="btn btn-primary" onclick="addProduct();">Agregar</a>
                 <thead>
                     <tr>
                         <th>Producto</th>
@@ -26,27 +23,28 @@
                 </thead>
                 <tbody>
                     <% if (results) { %> 
-                        <% for (var i = 0; i < results.length; i++) { %> 
-                            <tr>
-                                <td><%= results[i].nombreProducto %></td>
-                                <td><%= results[i].descripcion %></td>
-                                <td><%= results[i].precio %></td>
-                                <td><%= results[i].categoria %></td>
-                                <td>
-                                    <!-- <a href="update/<%= results[i].idProducto %>" class="btn btn-primary"><i class="fas fa-edit"></i> Editar</a> -->
-                                    <a onclick="confirmation(<%= results[i].idProducto %>);" ><i class='bx bx-trash'></i></i> Borrar</a>
-                                </td>
-                        </tr>
-                        <% } %>
-                    <% }; %>
-                    </tbody>
-                </table>
-                <!-- </div> -->
-            </div>
-            <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.17/dist/sweetalert2.all.min.js"></script>
-            <script>
-                $(document).ready(function () {
-                    $('#tableProducts').DataTable();
-                });
-            </script>
+                    <% for (var i = 0; i < results.length; i++) { %> 
+                    <tr>
+                        <td><%= results[i].nombreProducto %></td>
+                        <td><%= results[i].descripcion %></td>
+                        <td><%= results[i].precio %></td>
+                        <td><%= results[i].categoria %></td>
+                        <td>
+                            <a href="update/<%= results[i].idProducto %>" class="btn btn-primary"><i class='bx bx-edit'></i></a>
+                            <a class="btn btn-danger" onclick="confirmation(<%= results[i].idProducto %>);" ><i class='bx bx-trash'></i></a>
+                        </td>
+                    </tr>
+                    <% } %>
+                <% }; %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <%- include('_partials/_datatable') %>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.17/dist/sweetalert2.all.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#tableProducts').DataTable();
+        });
+    </script>
 <%- include('_partials/_footer') %> 
