@@ -46,12 +46,7 @@ route.get('/update/:idProducto', accountCtrl.isAuthenticated, (req, res) => {
 
 route.post('/signup', accountCtrl.regAccount);
 route.post('/account/:idUsuario', accountCtrl.editAccount)
-route.get('/deleteProduct/:idProducto', async (req, res) => {
-    const idProducto = req.params.idProducto;
-    connection.query('delete from productos where idProducto = ?', [idProducto], (err, results) => {
-        if (err) res.json(err);
-    });
-});
+route.get('/deleteProduct/:idProducto', productsCtrl.delete);
 
 route.post('/login', accountCtrl.login);
 route.get('/logout', accountCtrl.logout);

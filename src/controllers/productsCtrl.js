@@ -24,12 +24,12 @@
         }
     }
 
-    // productsCtrl.delete = (req, res) => {
-    //     const idProducto = req.params.idProducto;
-    //     connection.query('delete from productos where idProducto = ?', [idProducto], (err, results) => {
-    //         if (err) res.json(err);
-    //         // res.redirect('/products')
-    //     })
-    // }
+    productsCtrl.delete = (req, res) => {
+        const idProducto = req.params.idProducto;
+        connection.query('delete from productos where idProducto = ?', [idProducto], (err, results) => {
+            if (err) res.json(err);
+            // res.redirect('/products')
+        })
+    }
 
     module.exports = productsCtrl;
